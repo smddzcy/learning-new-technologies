@@ -72,4 +72,4 @@ My process of learning the basics of Go language.
 
 ## Sources
 
-[Official documentation](https://golang.org/doc/), [](http://gobyexample.com/), [](https://www.golang-book.com)
+[Official documentation](https://golang.org/doc/), http://gobyexample.com/, https://www.golang-book.com.
