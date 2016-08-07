@@ -1,4 +1,4 @@
-// +build defer
+// +build slicesMaps
 
 package main
 
