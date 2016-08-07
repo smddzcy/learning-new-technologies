@@ -14,8 +14,11 @@ func main() {
 		37, 34, 83, 27,
 		19, 97, 9, 17,
 	}
-	el, _ := smallestElement(x)
-	fmt.Println(el)
+	if el, er := smallestElement(x); er == nil {
+		fmt.Println("Result:", el)
+	} else {
+		fmt.Println("Error:", er)
+	}
 }
 
 func smallestElement(arr []int) (int, error) {
