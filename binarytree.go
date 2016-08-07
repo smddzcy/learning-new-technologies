@@ -83,7 +83,7 @@ func (b *BinaryTree) recursiveAdd(i int, node *binaryNode) *binaryNode {
 		node.rightChild = b.recursiveAdd(i, node.rightChild)
 	}
 
-	// Both element exists case and recursion intermediate step cases
+	// Element exists case and recursion intermediate step case
 	return node
 
 }
@@ -102,9 +102,9 @@ func (b *BinaryTree) traverseInOrder(root *binaryNode) {
 	if root == nil {
 		return
 	}
-	b.traversePostOrder(root.leftChild)
+	b.traverseInOrder(root.leftChild)
 	fmt.Print(root.data, " ")
-	b.traversePostOrder(root.rightChild)
+	b.traverseInOrder(root.rightChild)
 }
 
 func (b *BinaryTree) traversePreOrder(root *binaryNode) {
@@ -112,8 +112,8 @@ func (b *BinaryTree) traversePreOrder(root *binaryNode) {
 		return
 	}
 	fmt.Print(root.data, " ")
-	b.traversePostOrder(root.leftChild)
-	b.traversePostOrder(root.rightChild)
+	b.traversePreOrder(root.leftChild)
+	b.traversePreOrder(root.rightChild)
 }
 
 func (b *BinaryTree) traversePostOrder(root *binaryNode) {
