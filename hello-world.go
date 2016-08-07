@@ -2,7 +2,11 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
 
 // Basics
 func main() {
@@ -25,6 +29,26 @@ func main() {
 		j++
 	}
 
-	// TODO: Other basics
+	// Conditional statements
+	fmt.Println("\n\nConditionals:")
+	if true && false {
+		fmt.Println("Never executes.")
+	} else {
+		fmt.Println("👍")
+	}
 
+	rand.Seed(time.Now().UnixNano()) // seed the random number generator
+	num := rand.Intn(3) + 1          // random number between 1 and 3
+	fmt.Println("Random num: ", num)
+	switch num {
+	case 1:
+		fmt.Println("Low")
+		break
+	case 2:
+		fmt.Println("Middle")
+		break
+	case 3:
+		fmt.Println("High")
+		break
+	}
 }

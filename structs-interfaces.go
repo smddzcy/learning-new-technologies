@@ -49,14 +49,14 @@ func main() {
 	tri := triangle{triangleSides}
 	fmt.Printf("Area of the triangle must be 6.0: %f\n", tri.Area())
 
-	dev, avg := areaDeviation([]geometry{sqr, sqr2, tri})
+	dev, avg := areaDeviation(sqr, sqr2, tri)
 
 	fmt.Printf("Std. deviation: %f, Avg: %f\n", dev, avg)
 }
 
-// Calculates the standart deviation of given geometries' areas
-// Returns a tuple, deviation and average of areas
-func areaDeviation(shapes []geometry) (dev, avg float64) {
+// Calculates the standart deviation of a collection of geometries
+// Returns a tuple; deviation & average of areas
+func areaDeviation(shapes ...geometry) (dev, avg float64) {
 	len := float64(len(shapes))
 
 	// Get avg of areas

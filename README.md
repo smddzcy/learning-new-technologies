@@ -9,11 +9,11 @@ My process of learning the basics of Go language.
 - [x] Variables
 - [x] Constants
 - [x] For
-- [ ] If/Else
-- [ ] Switch
+- [x] If/Else
+- [x] Switch
 - [x] Arrays
-- [ ] Slices
-- [ ] Maps
+- [x] Slices
+- [x] Maps
 - [x] Range
 - [x] Functions
 - [ ] Multiple Return Values
