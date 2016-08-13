@@ -7,7 +7,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/smddzcy/learning-go"
+	"github.com/smddzcy/learning-go/binary-tree"
 )
 
 // Basics
@@ -91,5 +91,9 @@ func main() {
 			Loop binary tree add took: 0.153000 microseconds per element
 	*/
 
-	fmt.Println(`wow $1`)
+	complex := 3 + 4i
+	var complex2 complex64 = 6 + 8i
+	// default one is complex128, so typecast is required here
+	fmt.Println(complex64(complex) + complex2) // => (9+12i)
+
 }

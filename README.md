@@ -22,6 +22,7 @@ My process of learning the basics of Go language.
 - [x] Recursion
 - [x] Pointers
 - [x] Structs
+- [x] Enums (iota)
 - [x] Methods
 - [x] Interfaces
 - [x] Errors

@@ -1,3 +1,5 @@
+// +build variadicFuncs
+
 package main
 
 import "fmt"

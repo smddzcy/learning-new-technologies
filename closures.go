@@ -1,3 +1,5 @@
+// +build closures
+
 package main
 
 import "fmt"

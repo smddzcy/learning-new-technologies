@@ -1,3 +1,5 @@
+// +build errors
+
 package main
 
 import "fmt"
@@ -17,6 +19,7 @@ func erroneousDoubler(a int) (int, error) {
 	}
 	return a * 2, nil
 }
+
 func main() {
 	for i := -3; i < 2; i++ {
 		if r, e := erroneousDoubler(i); e == nil {

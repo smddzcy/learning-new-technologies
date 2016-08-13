@@ -1,3 +1,5 @@
+// +build concurrency
+
 package main
 
 import "fmt"
