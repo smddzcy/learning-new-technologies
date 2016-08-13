@@ -91,4 +91,5 @@ func main() {
 			Loop binary tree add took: 0.153000 microseconds per element
 	*/
 
+	fmt.Println(`wow $1`)
 }

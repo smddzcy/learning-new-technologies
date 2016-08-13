@@ -17,19 +17,20 @@ My process of learning the basics of Go language.
 - [x] Range
 - [x] Functions
 - [x] Multiple Return Values
-- [ ] Variadic Functions
-- [ ] Closures
-- [ ] Recursion
-- [ ] Pointers
+- [x] Variadic Functions (Using splats)
+- [x] Closures
+- [x] Recursion
+- [x] Pointers
 - [x] Structs
-- [ ] Methods
+- [x] Methods
 - [x] Interfaces
-- [ ] Errors
-- [ ] Goroutines
-- [ ] Channels
-- [ ] Channel Buffering
-- [ ] Channel Synchronization
-- [ ] Channel Directions
+- [x] Errors
+- [x] Type Assertions & Switches
+- [x] Goroutines
+- [x] Channels
+- [x] Channel Buffering
+- [x] Channel Synchronization
+- [x] Channel Directions
 - [ ] Select
 - [ ] Timeouts
 - [ ] Non-Blocking Channel Operations
