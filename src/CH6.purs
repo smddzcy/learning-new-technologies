@@ -1,11 +1,7 @@
 module CH6 where
 
 import Prelude
-import Data.Bounded (class Ord, Ordering(..))
-import Data.Eq (class Eq)
-import Data.Foldable (class Foldable)
-import Data.Traversable
-import Data.Monoid
+import Data.Traversable (class Foldable, foldMap, foldl, foldr)
 
 data NonEmpty a = NonEmpty a (Array a)
 
@@ -25,9 +21,6 @@ instance foldableNonEmpty :: Foldable NonEmpty where
   foldr fn acc (NonEmpty el xs) = foldr fn acc xs
   foldl fn acc (NonEmpty el xs) = foldl fn acc xs
   foldMap fn (NonEmpty el xs) = foldMap fn xs
-
-
-
 
 data Extended a = Finite a | Infinite
 
@@ -53,5 +46,3 @@ instance foldableOneMore :: (Foldable f) => Foldable (OneMore f) where
   foldr fn acc (OneMore el xs) = fn el (foldr fn acc xs)
   foldl fn acc (OneMore el xs) = fn (foldl fn acc xs) el
   foldMap fn (OneMore el xs) = fn el <> foldMap fn xs
-
-

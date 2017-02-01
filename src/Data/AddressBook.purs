@@ -2,61 +2,75 @@ module Data.AddressBook where
 
 import Prelude
 
-import Control.Plus (empty)
-import Data.List (List(..), filter, head, nubBy)
-import Data.Maybe (Maybe)
-
-
-type Address =
+newtype Address = Address
   { street :: String
   , city   :: String
   , state  :: String
   }
 
-type Entry =
-  { firstName :: String
-  , lastName  :: String
-  , address   :: Address
+address :: String -> String -> String -> Address
+address street city state = Address { street, city, state }
+
+data PhoneType
+  = HomePhone
+  | WorkPhone
+  | CellPhone
+  | OtherPhone
+
+newtype PhoneNumber = PhoneNumber
+  { "type" :: PhoneType
+  , number :: String
   }
 
-type AddressBook = List Entry
+phoneNumber :: PhoneType -> String -> PhoneNumber
+phoneNumber ty number = PhoneNumber
+  { "type": ty
+  , number: number
+  }
 
-showAddress :: Address -> String
-showAddress address = address.street <> ", " <> address.city <> ", " <> address.state
+newtype Person = Person
+  { firstName   :: String
+  , lastName    :: String
+  , homeAddress :: Address
+  , phones      :: Array PhoneNumber
+  }
 
-showEntry :: Entry -> String
-showEntry entry = entry.firstName <> ", " <> entry.lastName <> ": " <> showAddress entry.address
+person :: String -> String -> Address -> Array PhoneNumber -> Person
+person firstName lastName homeAddress phones =
+  Person { firstName, lastName, homeAddress, phones }
 
-showBook :: AddressBook -> String
-showBook Nil = ""
-showBook (Cons entry rem) = "Book: " <> showEntry entry <> " // " <> showBook rem
+examplePerson :: Person
+examplePerson =
+  person "John" "Smith"
+         (address "123 Fake St." "FakeTown" "CA")
+         [ phoneNumber HomePhone "555-555-5555"
+         , phoneNumber CellPhone "555-555-0000"
+         , phoneNumber WorkPhone "555-444-3322"
+         ]
 
-emptyBook :: AddressBook
-emptyBook = empty
+instance showAddress :: Show Address where
+  show (Address o) = "Address " <>
+    "{ street: " <> show o.street <>
+    ", city: "   <> show o.city <>
+    ", state: "  <> show o.state <>
+    " }"
 
-insertEntry :: Entry -> AddressBook -> AddressBook
-insertEntry = Cons
+instance showPhoneType :: Show PhoneType where
+  show HomePhone = "HomePhone"
+  show WorkPhone = "WorkPhone"
+  show CellPhone = "CellPhone"
+  show OtherPhone = "OtherPhone"
 
--- Use eta conversion to shorten the fn declaration
-findEntry :: String -> String -> AddressBook -> Maybe Entry
-findEntry firstName lastName = head <<< filter filterEntry
-  where
-    filterEntry :: Entry -> Boolean
-    filterEntry entry = entry.firstName == firstName && entry.lastName  == lastName
+instance showPhoneNumber :: Show PhoneNumber where
+  show (PhoneNumber o) = "PhoneNumber " <>
+    "{ type: "   <> show o."type" <>
+    ", number: " <> show o.number <>
+    " }"
 
--- Use full params
-findEntryByStreet :: String -> AddressBook -> Maybe Entry
-findEntryByStreet streetName book = head $ filter filterEntry book
-  where
-    filterEntry :: Entry -> Boolean
-    filterEntry entry = entry.address.street == streetName
-
-addressBookContains :: String -> AddressBook -> Boolean
-addressBookContains _ Nil = false
-addressBookContains name (Cons firstEntry remaining) = name == firstEntry.firstName || addressBookContains name remaining
-
-removeDuplicateEntries :: AddressBook -> AddressBook
-removeDuplicateEntries = nubBy haveSameNames
-  where
-    haveSameNames :: Entry -> Entry -> Boolean
-    haveSameNames e1 e2 = e1.firstName == e2.firstName && e1.lastName == e2.lastName
+instance showPerson :: Show Person where
+  show (Person o) = "Person " <>
+    "{ firstName: "   <> show o.firstName <>
+    ", lastName: "    <> show o.lastName <>
+    ", homeAddress: " <> show o.homeAddress <>
+    ", phones: "      <> show o.phones <>
+    " }"

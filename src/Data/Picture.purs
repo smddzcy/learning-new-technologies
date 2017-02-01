@@ -1,12 +1,14 @@
 module Data.Picture where
 
 import Prelude
-import Data.Shape
-import Data.Foldable
 import Global as Global
 import Math as Math
-import Data.String (length)
+import Control.Apply (lift2)
+import Data.Foldable (foldl)
 import Data.Int (toNumber)
+import Data.Maybe
+import Data.Shape (Point(..), Shape(..))
+import Data.String (length)
 
 type Picture = Array Shape
 
@@ -94,3 +96,15 @@ area (Circle _ r) = Math.pi * r * r
 area (Rectangle _ w h) = w * h
 area (Line (Point start) (Point end)) = Math.sqrt $ (Math.pow (end.x - start.x) 2.0) + (Math.pow (end.y - start.y) 2.0)
 area (Text _ text) = toNumber (length text)
+
+data OmurNum = I Int | N Number
+circleArea :: OmurNum -> Number
+circleArea (I a) = (toNumber (a * a)) * Math.pi
+circleArea (N a) = a * a * Math.pi
+
+addWithOptional :: forall a. (Semiring a) => Maybe a -> Maybe a -> Maybe a
+addWithOptional a b = lift2 add a b
+
+combineMaybe :: forall a f. Applicative f => Maybe (f a) -> f (Maybe a)
+combineMaybe Nothing = pure Nothing
+combineMaybe (Just (fa)) = Just <$> fa

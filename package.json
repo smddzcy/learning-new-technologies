@@ -1,0 +1,26 @@
+{
+  "name": "halogen-hello-world",
+  "version": "1.0.0",
+  "description": "Playing around with [PureScript](http://www.purescript.org/).",
+  "main": "a.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smddzcy/learning-purescript.git"
+  },
+  "author": "Samed Duzcay <admin@smddzcy.com> (http://www.smddzcy.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smddzcy/learning-purescript/issues"
+  },
+  "homepage": "https://github.com/smddzcy/learning-purescript#readme",
+  "dependencies": {
+    "purescript": "^0.10.5",
+    "virtual-dom": "^2.1.1"
+  }
+}
