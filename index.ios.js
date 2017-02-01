@@ -1,237 +1,65 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
   View,
-  PixelRatio,
-  TextInput,
-  TouchableOpacity,
-  ListView
+  Text,
+  NavigatorIOS,
+  TouchableOpacity
 } from 'react-native';
-import {Socket} from 'phoenix';
 
-const baseUrl = 'http://localhost:4000';
-
-/// SOCKET START
-let socket = new Socket(baseUrl + "/socket", {
-  logger: ((kind, msg, data) => { console.log(`${kind}: ${msg}`, data) }),
-  transport: WebSocket
-});
-
-socket.connect()
-
-// Now that you are connected, you can join channels with a topic:
-let channel = socket.channel("room:posts", {})
-channel.join()
-  .receive("ok", resp => { console.log("Joined successfully", resp) })
-  .receive("error", resp => { console.log("Unable to join", resp) })
-/// SOCKET END
-
-
-async function postJSON(url, data) {
-  try {
-    let response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
+export default class SimpleNavigationApp extends Component {
+  handleNavigationRequest() {
+    this.refs.nav.push({
+      component: MyScene,
+      title: 'Scene Title - Next Button',
+      passProps: { text: 'Next scene' }
     });
-    return await response.json();
-  } catch(err){
-    console.error(err);
-  }
-}
-
-async function getPosts() {
-  try {
-    let response = await fetch(baseUrl + '/posts');
-    return (await response.json()).data;
-  } catch(error) {
-    console.error(error);
-  }
-}
-
-/**
- * @param {String} title
- * @param {String} content
- */
-async function createPost(title, content) {
-  try {
-    const data = {
-      post: {
-        title: title,
-        content: content
-      }
-    };
-    let response = await postJSON(baseUrl + '/posts', data);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-class CreatePostView extends Component {
-
-  constructor(props, context) {
-    super(props, context);
-
-    // Set initial state
-    this.state = {
-      newPostTitle: null,
-      newPostContent: null
-    };
-  }
-
-  async onPostCreateButtonClick() {
-    try {
-      const resp = await createPost(this.state.newPostTitle, this.state.newPostContent);
-      this.setState({
-        newPostTitle: null,
-        newPostContent: null
-      });
-    } catch(err) {
-      console.error(err);
-    }
   }
 
   render() {
     return (
-      <View style={{flex: 1, marginBottom: 20}}>
-          <Text style={styles.header}>Create Post</Text>
-
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.h2}>Title: </Text>
-            <TextInput placeholder='Title...'
-                       style={{height: 24, width: 100}}
-                       value={this.state.newPostTitle}
-                       onChangeText={(text) => this.setState({newPostTitle: text})}/>
-          </View>
-
-
-          <View style={{flexDirection: 'row'}}>
-            <Text style={styles.h2}>Content: </Text>
-            <TextInput placeholder='Content...'
-                       style={{height: 24, width: 100}}
-                       multiline={true}
-                       value={this.state.newPostContent}
-                       onChangeText={(text) => this.setState({newPostContent: text})}/>
-          </View>
-
-          <View style={{flexDirection: 'row', alignItems: 'flex-start'}}>
-            <TouchableOpacity onPress={this.onPostCreateButtonClick.bind(this)}
-                              style={{paddingTop: 10, paddingBottom: 10, paddingRight: 10, backgroundColor: 'transparent'}}
-                              activeOpacity={0.5}>
-              <Text style={styles.buttonText}>Create</Text>
-            </TouchableOpacity>
-          </View>
-      </View>
+      <NavigatorIOS
+        ref='nav' // To access from refs
+        initialRoute={{
+          component: MyScene,
+          title: 'Scene Title - Initial',
+          passProps: {text: 'Initial scene' },
+          rightButtonTitle: 'Next',
+          onRightButtonPress: this.handleNavigationRequest.bind(this)
+        }}
+        style={{flex: 1}}/>
     );
   }
 }
 
+class MyScene extends Component {
+  static propTypes = {
+    text: PropTypes.string.isRequired,
+    navigator: PropTypes.object.isRequired,
+  }
 
-class MainView extends Component {
-  constructor(props, context) {
-    super(props, context);
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1.id !== r2.id
-    });
-
-    this.state = {
-      posts: [],
-      dataSource: ds.cloneWithRows([])
-    };
-
-    channel.on('new:post', post => {
-      let posts = this.state.posts;
-      posts.push(post);
-
-      this.setState({
-        posts: posts,
-        dataSource: ds.cloneWithRows(posts)
-      });
-    });
-
-    getPosts().then((posts) => {
-      this.setState({
-        posts: posts,
-        dataSource: ds.cloneWithRows(posts)
-      });
+  onForward = () => {
+    this.props.navigator.push({
+      component: MyScene,
+      title: 'Scene Title - Button Access',
+      passProps: {
+        text: 'Scene accessed from button'
+      }
     });
   }
 
-  componentWillUnmount() {
-    channel.off('new:post');
-  }
-
-
-  renderRow(data) {
+  render() {
     return (
-      <View style={{marginBottom: 10}}>
-        <Text><Text style={{fontWeight: 'bold'}}>ID:</Text> {data.id}</Text>
-        <Text><Text style={{fontWeight: 'bold'}}>Title:</Text> {data.title}</Text>
-        <Text><Text style={{fontWeight: 'bold'}}>Content:</Text> {data.content}</Text>
-      </View>
-    );
-  }
-
-  renderHeader(){
-    return (
-      <View>
-        <Text style={styles.header}>Posts</Text>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <Text>Current Scene: { this.props.text }</Text>
+        <TouchableOpacity onPress={this.onForward}
+                            activeOpacity={0.4}>
+          <Text>Tap me to load the next scene</Text>
+        </TouchableOpacity>
       </View>
     )
   }
-
-  render() {
-    return (
-      <View>
-        <CreatePostView/>
-        <ListView dataSource={this.state.dataSource}
-                  renderRow={this.renderRow}
-                  renderHeader={this.renderHeader}
-                  enableEmptySections={true}/>
-      </View>
-    );
-  }
 }
 
-
-export default class HelloWorldApp extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <MainView/>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    paddingTop: 50
-  },
-  header: {
-    fontSize: 24,
-    marginBottom: 10,
-    textDecorationStyle: 'solid',
-    textDecorationColor: '#333333',
-    textDecorationLine: 'underline'
-  },
-  h2: {
-    fontSize: 18
-  },
-  buttonText: {
-    fontSize: 16,
-    color: "#1565C0"
-  }
-});
-
-AppRegistry.registerComponent('AwesomeProject', () => HelloWorldApp);
+AppRegistry.registerComponent('AwesomeProject', () => SimpleNavigationApp);
