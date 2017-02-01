@@ -10,20 +10,9 @@ config :awesomeproject_backend, AwesomeprojectBackend.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
+  cache_static_lookup: false,
   check_origin: false,
   watchers: []
-
-
-# Watch static and templates for browser reloading.
-config :awesomeproject_backend, AwesomeprojectBackend.Endpoint,
-  live_reload: [
-    patterns: [
-      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
-      ~r{priv/gettext/.*(po)$},
-      ~r{web/views/.*(ex)$},
-      ~r{web/templates/.*(eex)$}
-    ]
-  ]
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
