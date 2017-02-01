@@ -16,4 +16,15 @@ defmodule AwesomeprojectBackend.Post do
     |> cast(params, [:title, :content])
     |> validate_required([:title, :content])
   end
+
+  @doc """
+  Returns the JSON representation of a Post
+  """
+  def to_json(post) do
+    %{
+      id: post.id,
+      title: post.title,
+      content: post.title
+    }
+  end
 end

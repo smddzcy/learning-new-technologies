@@ -15,6 +15,10 @@ defmodule AwesomeprojectBackend.PostController do
 
     case Repo.insert(changeset) do
       {:ok, post} ->
+        # Broadcast the new post to the channel.
+        AwesomeprojectBackend.Endpoint.broadcast("room:posts", "new:post",
+          Map.merge(post_params, %{id: post.id}))
+
         conn
         |> put_status(:created)
         |> put_resp_header("location", post_path(conn, :show, post))
