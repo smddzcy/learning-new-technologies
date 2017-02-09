@@ -1,6 +1,8 @@
+module Main where
 -- Just sticking to the convention.
+firstString :: String
 firstString = "Hello, World!"
-main = print firstString
+-- main = print firstString
 
 -- A basic function declaration.
 -- Left of "=>" declares the typeclasses.
@@ -10,6 +12,7 @@ doubleIt a = a * 2
 
 -- A much basic function declaration.
 -- Output of ":t concatenate" = "concatenate :: [a] -> [a] -> [a]"
+concatenate :: [a] -> [a] -> [a]
 concatenate a b = a ++ b
 
 -- Sorting
@@ -37,3 +40,13 @@ mergesort [x] = [x]
 mergesort x =
     let (left, right) = splitAt (length x `div` 2) x
     in merge (mergesort left) (mergesort right)
+
+f :: (Num a) => a -> a
+f x = x + 10
+
+g :: (Num a) => a -> a
+g x = x * 2
+
+
+main :: IO ()
+main = print "Hey"

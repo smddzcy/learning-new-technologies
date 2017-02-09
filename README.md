@@ -8,8 +8,8 @@ My learning progress of just another language, Haskell.
 - [x] Types & typeclasses
 - [x] Function syntax
 - [x] Recursion
-- [ ] Higher Order Functions
-- [ ] Modules
+- [x] Higher Order Functions
+- [x] Modules
 - [ ] Creating types & typeclasses
 - [ ] IO
 - [ ] Problem solving
