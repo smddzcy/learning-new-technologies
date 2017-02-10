@@ -1,4 +1,4 @@
-module BinaryTree
+module DataStructures.BinaryTree
   ( singleton
   , insert
   , contains
