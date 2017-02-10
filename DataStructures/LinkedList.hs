@@ -1,4 +1,4 @@
-module DataStructures.LinkedList
+  module DataStructures.LinkedList
   ( empty
   , head'
   , tail'
@@ -12,7 +12,7 @@ module DataStructures.LinkedList
   , toList
   ) where
 
-import Data.Maybe
+import Data.Maybe()
 
 data LinkedList a = Nil | Cons a (LinkedList a) deriving (Show, Read, Eq)
 
@@ -64,3 +64,7 @@ fromList = foldr Cons Nil
 toList :: LinkedList a -> [a]
 toList Nil = []
 toList (Cons a t) = a : toList t
+
+instance Functor LinkedList where
+  fmap _ Nil = Nil
+  fmap f (Cons a t) = Cons (f a) $ fmap f t
