@@ -41,12 +41,5 @@ mergesort x =
     let (left, right) = splitAt (length x `div` 2) x
     in merge (mergesort left) (mergesort right)
 
-f :: (Num a) => a -> a
-f x = x + 10
 
-g :: (Num a) => a -> a
-g x = x * 2
-
-
-main :: IO ()
-main = print "Hey"
+main = getLine >>= (return . concat . replicate 10) >>= putStrLn
