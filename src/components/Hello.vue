@@ -4,7 +4,7 @@
     <a v-for="link in links"
        :href="link.href"
        :title="link.text + ' page'"
-       v-on:click="clickedLink">{{ link.text }}</a>
+       @click="clickedLink">{{ link.text }}</a>
   </div>
 </template>
 

@@ -22,7 +22,7 @@
           <textarea v-model.trim="info.message" placeholder="Your message"/>
         </div>
         <div class="row">
-          <button type="submit" v-on:click="onSubmitButtonClick">Submit</button>
+          <button type="submit" @click="onSubmitButtonClick">Submit</button>
         </div>
       </div>
 
