@@ -4,7 +4,7 @@
     <a v-for="link in links"
        :href="link.href"
        :title="link.text + ' page'"
-       @click="clickedLink">{{ link.text }}</a>
+       @click="clickedLink(link)">{{ link.text }}</a>
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
         { href: '#/contact', text: 'Contact' }
       ],
       clickedLink: function (e) {
-        console.log('Going to: ' + e.target.href)
+        console.log(e.href)
       }
     }
   }
