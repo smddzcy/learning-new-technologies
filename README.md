@@ -1,6 +1,6 @@
-# vue-hello-world
+# Learning Vue.js
 
-> Learning basics of Vue.
+> Playing around with Vue.js
 
 ## Build Setup
 
