@@ -1,6 +1,6 @@
 # Learning Vue.js
 
-> Playing around with Vue.js
+Playing around with Vue.js
 
 ## Build Setup
 
