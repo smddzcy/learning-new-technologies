@@ -59,7 +59,8 @@ a {
 
 input,
 textarea,
-button {
+button,
+pre {
   border: 1px solid #ccc;
   background-color: #fafafa;
 }
@@ -69,7 +70,8 @@ textarea {
   padding: 5px;
 }
 
-button {
+button,
+pre {
   padding: 10px;
 }
 

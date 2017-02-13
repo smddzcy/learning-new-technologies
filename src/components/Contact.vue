@@ -34,7 +34,7 @@
 <script>
 export default {
   name: 'profile',
-  data () {
+  data: function () {
     return {
       heading: 'Contact Page',
       info: {

@@ -38,7 +38,7 @@
 <script>
 export default {
   name: 'profile',
-  data () {
+  data: function () {
     return {
       heading: 'Profile Page',
       info: {
