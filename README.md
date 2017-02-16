@@ -1,6 +1,6 @@
 # learning-new-technologies
 
-I've started to create too many repositories, and I thought it would be much better to combine all of my learning process to a single repository.
+I've started to create too many repositories, and I thought it would be much better to combine all of my learning process in a single place.
 
 ## Technologies Learned
 
