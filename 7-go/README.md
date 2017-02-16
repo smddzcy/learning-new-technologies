@@ -1,6 +1,6 @@
 # Learning Go
 
-My process of learning the basics of Go language.
+My process of learning the basics of [Golang](https://golang.org/).
 
 ## Things to Learn
 
