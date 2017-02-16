@@ -12,6 +12,7 @@ I've started to create too many repositories, and I thought it would be much bet
 6. [PureScript][6]
 7. [Go][7]
 8. [React Native][8]
+9. [Elixir / Phoenix][9]
 
 [1]: https://github.com/smddzcy/learning-new-technologies/tree/master/1-heroku
 [2]: https://github.com/smddzcy/learning-new-technologies/tree/master/2-firebase
@@ -21,3 +22,4 @@ I've started to create too many repositories, and I thought it would be much bet
 [6]: https://github.com/smddzcy/learning-new-technologies/tree/master/6-purescript
 [7]: https://github.com/smddzcy/learning-new-technologies/tree/master/7-go
 [8]: https://github.com/smddzcy/learning-new-technologies/tree/master/8-react-native
+[9]: https://github.com/smddzcy/learning-new-technologies/tree/master/9-elixir-phoenix
