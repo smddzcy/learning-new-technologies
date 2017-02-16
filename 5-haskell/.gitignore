@@ -1,0 +1,22 @@
+# Files without extension
+*
+!/**/
+!*.*
+!LICENSE
+
+# Haskell stuff
+dist
+cabal-dev
+*.o
+*.hi
+*.chi
+*.chs.h
+.virtualenv
+.hsenv
+.cabal-sandbox/
+cabal.sandbox.config
+cabal.config
+
+# IDE stuff
+.idea/
+.vscode/
