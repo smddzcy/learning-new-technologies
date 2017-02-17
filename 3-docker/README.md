@@ -69,3 +69,119 @@ CMD ["/bin/bash", "echo", "Hello World"]
 - `PUSH` pushes your image to Docker Hub, or alternately to another saved registery.
 
 - More: [Best practices for writing Dockerfiles](https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/).
+
+## Swarm
+
+- Swarm mode is the cluster management and orchestration features embedded in the Docker. Swarm allows you to run your containers on more than one machine.
+
+- Create a Swarm: `docker swarm init`
+
+- Create a Docker Compose file (`docker-stack.yml`):
+```yml
+# version 3 is important.
+# docker stack deploy won't support use of earlier versions.
+version: "3"
+
+services:
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379"
+    networks:
+      - frontend
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+  
+  db:
+    image: postgres:9.4
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - backend
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+  
+  vote:
+    image: dockersamples/examplevotingapp_vote:before
+    ports:
+      - 5000:80
+    networks:
+      - frontend
+    depends_on:
+      - redis
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+      restart_policy:
+        condition: on-failure
+
+  result:
+    image: dockersamples/examplevotingapp_result:before
+    ports:
+      - 5001:80
+    networks:
+      - backend
+    depends_on:
+      - db
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+  worker:
+    image: dockersamples/examplevotingapp_worker
+    networks:
+      - frontend
+      - backend
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels: [APP=VOTING]
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+
+  visualizer:
+    image: manomarks/visualizer
+    ports:
+      - "8080:8080"
+    stop_grace_period: 1m30s
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+networks:
+  frontend:
+  backend:
+
+volumes:
+  db-data:
+```
+
+- Deploy the stack: `docker stack deploy --compose-file docker-stack.yml <app-name>`
+
+- Verify: `docker stack services <app-name>` Output should be sth like this:
+```
+ID            NAME         MODE        REPLICAS  IMAGE
+25wo6p7fltyn  vote_db      replicated  1/1       postgres:9.4
+2ot4sz0cgvw3  vote_worker  replicated  1/1       dockersamples/examplevotingapp_worker:latest
+9faz4wbvxpck  vote_redis   replicated  2/2       redis:alpine
+ocm8x2ijtt88  vote_vote    replicated  2/2       dockersamples/examplevotingapp_vote:latest
+p1dcwi0fkcbb  vote_result  replicated  2/2       dockersamples/examplevotingapp_result:latest
+```
+
+- The Compose file also defines two networks, front-tier and back-tier. Each container is placed on one or two networks. Once on those networks, they can access other services on that network in code just by using the name of the service.
+
+- Services are isolated on their network. Services are only able to discover each other by name if they are on the same network.
+
