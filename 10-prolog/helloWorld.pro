@@ -31,7 +31,6 @@ last([_|X], Y) :- last(X, Y).
 el_before_last([X, _], X).
 el_before_last([_|X], Y) :- el_before_last(X, Y).
 
-
 element_at(1, [H|_], H).
 element_at(N, [_|T], X) :- element_at(M, T, X), N is M + 1.
 
