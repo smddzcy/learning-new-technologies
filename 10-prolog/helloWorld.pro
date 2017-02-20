@@ -48,3 +48,8 @@ is_palindrome(L) :- my_reverse(L, L).
 my_flatten([], []).
 my_flatten([H|T], L) :- is_list(H), my_flatten(T, L1), my_append(H, L1, L)
                       ; my_flatten(T, L1), my_append([H], L1, L).
+
+compress([], []).
+compress([X], [X]).
+compress([X, X|T], L) :- compress([X|T], L).
+compress([X, Y|T], [X|L]) :- X \= Y, compress([Y|T], L).
