@@ -42,3 +42,9 @@ my_append([H|T], L, [H|L1]) :- my_append(T,L,L1).
 
 my_reverse([], []).
 my_reverse([H|T], L) :- my_reverse(T, L1), my_append(L1, [H], L).
+
+is_palindrome(L) :- my_reverse(L, L).
+
+my_flatten([], []).
+my_flatten([H|T], L) :- is_list(H), my_flatten(T, L1), my_append(H, L1, L)
+                      ; my_flatten(T, L1), my_append([H], L1, L).
