@@ -14,6 +14,7 @@ I've started to create too many repositories, and I thought it would be much bet
 8. [React Native][8]
 9. [Elixir / Phoenix][9]
 10. [Prolog][10]
+11. [TensorFlow][11]
 
 [1]: https://github.com/smddzcy/learning-new-technologies/tree/master/1-heroku
 [2]: https://github.com/smddzcy/learning-new-technologies/tree/master/2-firebase
@@ -25,3 +26,4 @@ I've started to create too many repositories, and I thought it would be much bet
 [8]: https://github.com/smddzcy/learning-new-technologies/tree/master/8-react-native
 [9]: https://github.com/smddzcy/learning-new-technologies/tree/master/9-elixir-phoenix
 [10]: https://github.com/smddzcy/learning-new-technologies/tree/master/10-prolog
+[11]: https://github.com/smddzcy/learning-new-technologies/tree/master/11-tensorflow
