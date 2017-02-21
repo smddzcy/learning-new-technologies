@@ -30,7 +30,7 @@ linear_model = a * x + b
 # and their value can never change.
 # variables are __not__ initialized when you call tf.Variable.
 # to initialize all the variables explicitly call:
-init = tf.initialize_all_variables()
+init = tf.global_variables_initializer()
 sess.run(init)
 
 print(sess.run(linear_model, {x: [1, 2, 3, 4]}))
