@@ -34,7 +34,7 @@ def main(_):
   # Biases
   b = tf.Variable(tf.zeros([10]))
   # Implement the model (without a softmax layer)
-  y = tf.nn.softmax(tf.matmul(x, W) + b)
+  y = tf.matmul(x, W) + b
 
   # Placeholder for correct answers
   y_ = tf.placeholder(tf.float32, [None, 10])
