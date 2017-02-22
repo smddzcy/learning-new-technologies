@@ -17,6 +17,6 @@ and P3(w3, x[2], x[1], nx0);
 
 and P4(w4, x[2], x[1], x[0]);
 
-or(y, x4, x3, x2, x1);
+or(y, w4, w3, w2, w1);
 
 endmodule
