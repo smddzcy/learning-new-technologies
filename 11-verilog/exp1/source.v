@@ -1,3 +1,4 @@
+`timescale 1ns / 1ns
 module source(y, x);
 
 input wire [2:0] x;
