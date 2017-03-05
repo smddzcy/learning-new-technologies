@@ -65,8 +65,8 @@ capacity_error_acc([CourseID, RoomID, _], PreviousError, Error) :-
   ), !.
 
 % errors_for_plan/2 is true iff ErrorCount is the error count of Plan.
-errors_for_plan([], 0).
-errors_for_plan([_], 0).
+errors_for_plan([], 0) :- !.
+errors_for_plan([_], 0) :- !.
 errors_for_plan(Plan, ErrorCount) :-
   findall(X, comb(2, Plan, X), TwoCombinations),
   foldl(slot_err_acc, TwoCombinations, 0, SlotErrorCount),
