@@ -55,7 +55,7 @@ slot_err_acc([CourseFinalPlan1, CourseFinalPlan2], PreviousError, Error) :-
 
 % capacity_error_acc/3 is an accumulator for a fold in errors_for_plan/2.
 % It is true iff Error is the sum of PreviousError and capacity overflow of RoomID
-% assuming we assign the final of CourseID to RoomID.
+% assuming we assign the final exam of CourseID to RoomID.
 capacity_error_acc([CourseID, RoomID, _], PreviousError, Error) :-
   room_capacity(RoomID, RoomCapacity),
   student_count(CourseID, NumberOfAttendee),
@@ -64,7 +64,9 @@ capacity_error_acc([CourseID, RoomID, _], PreviousError, Error) :-
   ;  Error is PreviousError
   ), !.
 
-% errors_for_plan/2 is true iff ErrorCount is the error count of Plan.
+% errors_for_plan/2 is true iff ErrorCount is the total error count of Plan.
+% Folds over the 2 element combinations of Plan, uses slot_err_acc/3 and
+% capacity_error_acc/3 accumulators to get the count of all errors of Plan.
 errors_for_plan([], 0) :- !.
 errors_for_plan([_], 0) :- !.
 errors_for_plan(Plan, ErrorCount) :-
@@ -75,7 +77,7 @@ errors_for_plan(Plan, ErrorCount) :-
 
 % final_plan_generate_acc/3 is the accumulator for the fold in final_plan/1.
 % It is true if Plan is Course added to PreviousPlan with a proper room and slot
-% so that it has 0 error.
+% so that it has 0 error. It uses errors_for_plan/2 to calculate the error count.
 final_plan_generate_acc(Course, PreviousPlan, Plan) :-
   available_slots(Slots), all_rooms(Rooms), !,
   member(Slot, Slots), member(Room, Rooms),
@@ -84,7 +86,8 @@ final_plan_generate_acc(Course, PreviousPlan, Plan) :-
   errors_for_plan(Plan, 0).
 
 % final_plan/1 is true iff Plans is a course plan in the format
-% [[CourseID, RoomID, Slot] | ...] with 0 errors.
+% [[CourseID, RoomID, Slot], [CourseID2, RoomID2, Slot2], ...] with 0 errors.
+% Errors are calculated in the accumulator final_plan_generate_acc/3.
 final_plan(Plans) :-
   all_courses(Courses),
   foldl(final_plan_generate_acc, Courses, [], Plans).
