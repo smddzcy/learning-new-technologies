@@ -1,23 +1,23 @@
 % students/2 is true iff Students contains all the students who takes the course CourseID.
 students(CourseID, Students) :-
-  findall(X, (student(X, Courses), member(CourseID, Courses)), Students), !.
+  findall(X, (student(X, Courses), member(CourseID, Courses)), Students).
 
 % student_count/2 is true iff StudentCount is the count of students who takes the course CourseID.
 student_count(CourseID, StudentCount) :-
-  students(CourseID, L), length(L, StudentCount), !.
+  students(CourseID, L), length(L, StudentCount).
 
 % all_students/1 is true iff StudentList contains all the students.
 all_students(StudentList) :-
-  findall(X, student(X, _), StudentList), !.
+  findall(X, student(X, _), StudentList).
 
 % all_courses/1 is true iff CourseList contains all the courses.
 all_courses(CourseList) :-
   findall(X, student(_, X), L1), flatten(L1, L2),
-  list_to_set(L2, CourseList), !.
+  list_to_set(L2, CourseList).
 
 % all_rooms/1 is true iff RoomList contains all the rooms.
 all_rooms(RoomList) :-
-  findall(X, room_capacity(X, _), RoomList), !.
+  findall(X, room_capacity(X, _), RoomList).
 
 % common_students/3 is true iff StudentCount is the common student count of
 % CourseID1 and CourseID2.
@@ -25,7 +25,7 @@ common_students(CourseID1, CourseID2, StudentCount) :-
   students(CourseID1, Students1),
   students(CourseID2, Students2),
   intersection(Students1, Students2, CommonStudents),
-  length(CommonStudents, StudentCount), !.
+  length(CommonStudents, StudentCount).
 
 % comb/3 generates N-element combinations of a list.
 % This rule is taken from http://kti.ms.mff.cuni.cz/~bartak/prolog/combinatorics.html
@@ -83,7 +83,7 @@ final_plan_generate_acc(Course, PreviousPlan, Plan) :-
   append([PlanPart], PreviousPlan, Plan),
   errors_for_plan(Plan, 0).
 
-% final_plan/1 gives true if Plans is a course plan in the format
+% final_plan/1 is true iff Plans is a course plan in the format
 % [[CourseID, RoomID, Slot] | ...] with 0 errors.
 final_plan(Plans) :-
   all_courses(Courses),
