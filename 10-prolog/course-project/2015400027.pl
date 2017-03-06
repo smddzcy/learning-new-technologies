@@ -68,7 +68,6 @@ capacity_error_acc([CourseID, RoomID, _], PreviousError, Error) :-
 % Folds over the 2 element combinations of Plan, uses slot_err_acc/3 and
 % capacity_error_acc/3 accumulators to get the count of all errors of Plan.
 errors_for_plan([], 0) :- !.
-errors_for_plan([_], 0) :- !.
 errors_for_plan(Plan, ErrorCount) :-
   findall(X, comb(2, Plan, X), TwoCombinations),
   foldl(slot_err_acc, TwoCombinations, 0, SlotErrorCount),
