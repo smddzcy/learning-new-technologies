@@ -41,33 +41,33 @@ comb(N, [_|T], Comb) :-
 % slot_error/3 is true iff Error is the slot error of given final plan parts.
 % If final plan parts have the same slot, slot error is the common student count of courses.
 % Otherwise, slot error is 0.
-slot_error([_, _, Slot1], [_, _, Slot2], 0) :-
-  Slot1 \= Slot2, !.
 slot_error([CourseID1, _, Slot1], [CourseID2, _, Slot1], Error) :-
-  common_students(CourseID1, CourseID2, Error).
+  % Use a cut to not retry evaluating with the base case below.
+  common_students(CourseID1, CourseID2, Error), !.
+slot_error(_, _, 0).
 
 % slot_err_acc/3 is an accumulator for a fold in errors_for_plan/2.
 % It is true iff Error is the sum of PreviousError and slot error of
 % FinalPlanPart1 and FinalPlanPart2 (which is calculated by slot_error/3).
 slot_err_acc([FinalPlanPart1, FinalPlanPart2], PreviousError, Error) :-
   slot_error(FinalPlanPart1, FinalPlanPart2, SlotError),
-  Error is PreviousError + SlotError, !.
+  Error is PreviousError + SlotError.
 
 % room_slot_conflict/3 is true iff Error is the room & slot conflict of given final plan parts.
 % Conflict is 0 if final plan parts have different room or slot.
 % Conflict is the sum of student counts if final plan parts have the same room and slot.
-room_slot_conflict([_, RoomID1, Slot1], [_, RoomID2, Slot2], 0) :-
-  (RoomID1 \= RoomID2; Slot1 \= Slot2), !.
 room_slot_conflict([CourseID1, RoomID1, Slot1], [CourseID2, RoomID1, Slot1], Error) :-
   student_count(CourseID1, StudentCount1), student_count(CourseID2, StudentCount2),
-  Error is StudentCount1 + StudentCount2.
+  % Use a cut to not retry evaluating with the base case below.
+  Error is StudentCount1 + StudentCount2, !.
+room_slot_conflict(_, _, 0).
 
 % room_slot_conflict_acc/3 is an accumulator for a fold in conflicts_for_plan/2.
 % It is true iff Error is the sum of PreviousError and room & slot conflict of
 % FinalPlanPart1 and FinalPlanPart2 (which is calculated by room_slot_conflict/3).
 room_slot_conflict_acc([FinalPlanPart1, FinalPlanPart2], PreviousError, Error) :-
   room_slot_conflict(FinalPlanPart1, FinalPlanPart2, RoomSlotConflict),
-  Error is PreviousError + RoomSlotConflict, !.
+  Error is PreviousError + RoomSlotConflict.
 
 % capacity_error_acc/3 is an accumulator for a fold in errors_for_plan/2.
 % It is true iff Error is the sum of PreviousError and capacity overflow of RoomID
@@ -78,17 +78,18 @@ capacity_error_acc([CourseID, RoomID, _], PreviousError, Error) :-
   (  NumberOfAttendees > RoomCapacity
   -> Error is NumberOfAttendees - RoomCapacity + PreviousError
   ;  Error is PreviousError
-  ), !.
+  ).
 
 % errors_for_plan/2 is true iff ErrorCount is the total error count of Plan.
 % Folds over the 2 element combinations of Plan, uses slot_err_acc/3 and
 % capacity_error_acc/3 accumulators to get the count of all errors of Plan.
 errors_for_plan([], 0) :- !.
 errors_for_plan(Plan, ErrorCount) :-
+  % Find all 2-element combinations of final plan parts.
   findall(X, comb(2, Plan, X), TwoCombinations),
+  % Fold over the final plan parts to find all errors, type by type.
   foldl(slot_err_acc, TwoCombinations, 0, SlotErrorCount),
-  foldl(capacity_error_acc, Plan, SlotErrorCount, ErrorCount),
-  !.
+  foldl(capacity_error_acc, Plan, SlotErrorCount, ErrorCount).
 
 % errors_for_plan/2 is true iff ErrorCount is the total error count of Plan.
 % Folds over the 2 element combinations of Plan, uses slot_err_acc/3,
@@ -96,18 +97,19 @@ errors_for_plan(Plan, ErrorCount) :-
 % all errors of Plan.
 conflicts_for_plan([], 0) :- !.
 conflicts_for_plan(Plan, ErrorCount) :-
+  % Find all 2-element combinations of final plan parts.
   findall(X, comb(2, Plan, X), TwoCombinations),
+  % Fold over the final plan parts to find all errors, type by type.
   foldl(slot_err_acc, TwoCombinations, 0, SlotErrorCount),
   foldl(room_slot_conflict_acc, TwoCombinations, SlotErrorCount, RoomSlotErrorCount),
-  foldl(capacity_error_acc, Plan, RoomSlotErrorCount, ErrorCount),
-  !.
+  foldl(capacity_error_acc, Plan, RoomSlotErrorCount, ErrorCount).
 
 % final_plan_generate_acc/3 is the accumulator for the fold in final_plan/1.
 % It is true if Plan is Course added to PreviousPlan with a proper room and slot
 % so that it has 0 error. It uses errors_for_plan/2 to calculate the error count.
 final_plan_generate_acc(Course, PreviousPlan, Plan) :-
   % Get all the slots and rooms, and pick one element from both.
-  available_slots(Slots), all_rooms(Rooms), !, member(Slot, Slots), member(Room, Rooms),
+  available_slots(Slots), all_rooms(Rooms), member(Slot, Slots), member(Room, Rooms),
   % Construct a part of the final plan and call it FinalPlanPart.
   FinalPlanPart = [Course, Room, Slot],
   % Append the final plan part to PreviousPlan.
@@ -120,6 +122,7 @@ final_plan_generate_acc(Course, PreviousPlan, Plan) :-
 % Errors are calculated in the accumulator final_plan_generate_acc/3.
 final_plan(Plans) :-
   all_courses(Courses),
+  % Fold over the courses and find an appropriate room and slot for each one.
   foldl(final_plan_generate_acc, Courses, [], Plans).
 
 % clear_knowledge_base/0 retracts student/2, available_slots/1 and room_capacity/2,
