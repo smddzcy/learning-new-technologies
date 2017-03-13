@@ -16,6 +16,7 @@ I've started to create too many repositories, and I thought it would be much bet
 10. [Prolog][10]
 11. [Verilog][11]
 12. [TensorFlow][12]
+13. [Scheme][13]
 
 [1]: https://github.com/smddzcy/learning-new-technologies/tree/master/1-heroku
 [2]: https://github.com/smddzcy/learning-new-technologies/tree/master/2-firebase
@@ -29,3 +30,4 @@ I've started to create too many repositories, and I thought it would be much bet
 [10]: https://github.com/smddzcy/learning-new-technologies/tree/master/10-prolog
 [11]: https://github.com/smddzcy/learning-new-technologies/tree/master/11-prolog
 [12]: https://github.com/smddzcy/learning-new-technologies/tree/master/12-tensorflow
+[13]: https://github.com/smddzcy/learning-new-technologies/tree/master/13-scheme
