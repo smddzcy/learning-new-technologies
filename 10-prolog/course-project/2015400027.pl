@@ -43,6 +43,7 @@ comb(N, [_|T], Comb) :-
 % Otherwise, slot error is 0.
 slot_error([CourseID1, _, Slot1], [CourseID2, _, Slot1], Error) :-
   % Use a cut to not retry evaluating with the base case below.
+  % Base case should only be evaluated if slots of the final plan parts are different.
   common_students(CourseID1, CourseID2, Error), !.
 slot_error(_, _, 0).
 
@@ -59,6 +60,7 @@ slot_err_acc([FinalPlanPart1, FinalPlanPart2], PreviousError, Error) :-
 room_slot_conflict([CourseID1, RoomID1, Slot1], [CourseID2, RoomID1, Slot1], Error) :-
   student_count(CourseID1, StudentCount1), student_count(CourseID2, StudentCount2),
   % Use a cut to not retry evaluating with the base case below.
+  % Base case should only be evaluated if slots and rooms of the final plan parts are different.
   Error is StudentCount1 + StudentCount2, !.
 room_slot_conflict(_, _, 0).
 
@@ -75,10 +77,11 @@ room_slot_conflict_acc([FinalPlanPart1, FinalPlanPart2], PreviousError, Error) :
 capacity_error_acc([CourseID, RoomID, _], PreviousError, Error) :-
   room_capacity(RoomID, RoomCapacity),
   student_count(CourseID, NumberOfAttendees),
-  (  NumberOfAttendees > RoomCapacity
-  -> Error is NumberOfAttendees - RoomCapacity + PreviousError
-  ;  Error is PreviousError
-  ).
+  % Use a cut here to not go to the base case below if NumberOfAttendees is bigger than RoomCapacity.
+  NumberOfAttendees > RoomCapacity, !,
+  % NumberOfAttendees - RoomCapacity is the capacity error of the final plan part.
+  Error is NumberOfAttendees - RoomCapacity + PreviousError.
+capacity_error_acc(_, PreviousError, PreviousError).
 
 % errors_for_plan/2 is true iff ErrorCount is the total error count of Plan.
 % Folds over the 2 element combinations of Plan, uses slot_err_acc/3 and
