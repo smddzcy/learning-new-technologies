@@ -4,6 +4,7 @@ import Control.Arrow
 import Control.Monad
 import System.Random (randomRIO)
 import System.IO.Unsafe (unsafePerformIO)
+import Data.List
 
 -- Find the last element of a list
 last1 :: [a] -> a
@@ -141,6 +142,49 @@ lsort [] = []
 lsort (x:xs) = left ++ [x] ++ right
                where left = lsort $ filter (\x' -> length x' <= length x) xs
                      right = lsort $ filter (\x' -> length x' > length x) xs
+
+-- Determine whether a given integer number is prime
+factors :: (Integral a, Eq a) => a -> [a]
+factors n = [x | x <- [1..n], n `mod` x == 0]
+
+isPrime :: (Integral a, Eq a) => a -> Bool
+isPrime n = factors n == [1, n]
+
+-- Determine the prime factors of a given positive integer
+primeFactors :: Int -> [Int]
+primeFactors n = concatMap (\x -> x : filter (== x) (primeFactors (n `div` x))) uniqPrimeFactors
+                 where uniqPrimeFactors = filter isPrime $ factors n
+
+-- Determine the prime factors of a given positive integer (2)
+primeFactorsMult :: Int -> [(Int, Int)] 
+primeFactorsMult xs = (head &&& length) <$> pack (primeFactors xs)
+
+-- A list of prime numbers
+primeNumbers :: [Integer] -> [Integer]
+primeNumbers = filter isPrime
+
+-- Goldbach's conjecture
+goldbach :: Integer -> [(Integer, Integer)]
+goldbach n = [(x, y) | let facs = primeNumbers [2..n], x <- facs, y <- facs, x + y == n]
+
+-- Determine the greatest common divisor of two positive integer numbers
+gcd' a 0 = a
+gcd' 0 b = b
+gcd' a b | a > b     = gcd' (a-b) b
+         | otherwise =  gcd' a (b-a)
+
+-- Determine whether two positive integer numbers are coprime
+coprime x y = primeFactorsX \\ primeFactors y == primeFactorsX
+              where primeFactorsX = primeFactors x
+
+-- Logic functions
+and' x y = x && y
+or' x y = x || y
+nand' x y = not $ and' x y
+nor' x y = not $ or' x y
+xor' x y = (x || y) && not (x && y)
+impl' x = or' (not x)
+equ' x y = not $ xor' x y
 
 main :: IO ()
 main = putStrLn "wow" 
