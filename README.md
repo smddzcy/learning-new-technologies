@@ -2,7 +2,7 @@
 
 I've started to create too many repositories, and I thought it would be much better to combine all of my learning process in a single place.
 
-## Technologies Learned (or still learning)
+## Technologies Learned (or still learning)
 
 1. [Heroku][1]
 2. [Firebase][2]
