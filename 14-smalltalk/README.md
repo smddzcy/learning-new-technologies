@@ -1,4 +1,4 @@
-# Smalltalk
+# Smalltalk
 
 I'll be using [Pharo](http://pharo.org/), which is an open source implementation Smalltalk.
 
