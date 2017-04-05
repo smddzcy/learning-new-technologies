@@ -1,31 +1,99 @@
-`timescale 1ns/1ns
-module source(y, n, x, s);
+`timescale 1ns / 1ns
+module source (
+	output reg [1:0] y,
+	input x,
+	input rst,
+	input clk
+);
 
-input wire [0:0] x;
-input wire [2:0] s;
-output wire [1:0] y;
-output wire [2:0] n;
+parameter A = 3'b000, B = 3'b001, C = 3'b010, D = 3'b011, E = 3'b100,
+          F = 3'b101, G = 3'b110, H = 3'b111;
 
-wire s1_and_not_s0, s2_and_not_s0, s2_or_s0, s2_xor_s1, w1, w2, w3, ns0, nx;
+reg [2:0] s;
 
-not(ns0, s[0]);
-not(nx, x);
+initial begin
+  s = A;
+end
 
-and(s1_and_not_s0, s[1], ns0);
-and(s2_and_not_s0, s[2], ns0);
-and(w1, s1_and_not_s0, nx);
-or(n[2], s2_and_not_s0, w1);
+always @(s) begin
+	case(s)
+		D: y <= 2'b11;
+    F: y <= 2'b10;
+    H: y <= 2'b01;
+		default: y <= 2'b00;
+	endcase
+end
 
-or(s2_or_s0, s[0], s[2]);
-and(w2, nx, s2_or_s0);
-and(w3, s1_and_not_s0, x);
-or(n[1], w2, w3);
-
-not(n[0], nx);
-
-xor(s2_xor_s1, s[2], s[1]);
-and(y[1], s[0], s2_xor_s1);
-
-and(y[0], s[1], s[0]);
+always @(posedge clk) begin
+	if(rst == 1'b1) begin
+		s <= A;
+	end
+	else begin
+		if(s == A) begin
+			if(x == 1'b0) begin
+				s <= A;
+			end
+			else begin
+				s <= B;
+			end
+		end
+		else if(s == B) begin
+			if(x == 1'b0) begin
+				s <= C;
+			end
+			else begin
+				s <= B;
+			end
+		end
+		else if(s == C) begin
+			if(x == 1'b0) begin
+				s <= E;
+			end
+			else begin
+				s <= D;
+			end
+		end
+		else if(s == D) begin
+			if(x == 1'b0) begin
+				s <= C;
+			end
+			else begin
+				s <= B;
+			end
+		end
+		else if(s == E) begin
+			if(x == 1'b0) begin
+				s <= G;
+			end
+			else begin
+				s <= F;
+			end
+		end
+		else if(s == F) begin
+			if(x == 1'b0) begin
+				s <= C;
+			end
+			else begin
+				s <= B;
+			end
+		end
+		else if(s == G) begin
+			if(x == 1'b0) begin
+				s <= G;
+			end
+			else begin
+				s <= H;
+			end
+		end
+    else begin
+      if(x == 1'b0) begin
+        s <= C;
+      end
+      else begin
+        s <= B;
+      end
+    end
+	end
+end
 
 endmodule
