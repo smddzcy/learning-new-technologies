@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="801px" height="294px" viewBox="0 0 801 294" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>exp4</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="exp4--Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="exp4--exp4" transform="translate(-2.000000, -5.000000)">
+            <circle id="exp4--Oval" stroke="#000000" cx="85.5" cy="94.5" r="30"></circle>
+            <text id="exp4--A" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="78.5" y="100.5">A</tspan>
+            </text>
+            <circle id="exp4--Oval" stroke="#000000" cx="244.5" cy="94.5" r="30"></circle>
+            <text id="exp4--B" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="237.5" y="100.5">B</tspan>
+            </text>
+            <circle id="exp4--Oval" stroke="#000000" cx="422.5" cy="94.5" r="30"></circle>
+            <text id="exp4--C" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="415.5" y="100.5">C</tspan>
+            </text>
+            <circle id="exp4--Oval" stroke="#000000" cx="605.5" cy="94.5" r="30"></circle>
+            <text id="exp4--D" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="598.5" y="100.5">D</tspan>
+            </text>
+            <circle id="exp4--Oval" stroke="#000000" cx="771.5" cy="94.5" r="30"></circle>
+            <text id="exp4--E" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="765.5" y="100.5">E</tspan>
+            </text>
+            <circle id="exp4--Oval" stroke="#000000" cx="85.5" cy="253.5" r="30"></circle>
+            <text id="exp4--F" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="79.5" y="259.5">F</tspan>
+            </text>
+            <circle id="exp4--Oval" stroke="#000000" cx="156.5" cy="253.5" r="30"></circle>
+            <text id="exp4--G" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="149.5" y="259.5">G</tspan>
+            </text>
+            <circle id="exp4--Oval" stroke="#000000" cx="273.5" cy="253.5" r="30"></circle>
+            <text id="exp4--H" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="266.5" y="259.5">H</tspan>
+            </text>
+            <path d="M115.5,94.5 L214.5,94.5 L115.5,94.5 Z" id="exp4--Shape" stroke="#000000" fill="#000000"></path>
+            <polygon id="exp4--Shape" fill="#000000" points="214.5 94.5 206.5 89.5 206.5 99.5"></polygon>
+            <text id="exp4--x'/y=00" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="134.5" y="116">x'/y=00</tspan>
+            </text>
+            <text id="exp4--y=00" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="37" y="188">y=00</tspan>
+            </text>
+            <text id="exp4--y=00" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="185" y="173">y=00</tspan>
+            </text>
+            <text id="exp4--y=00" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="132" y="188">y=00</tspan>
+            </text>
+            <path d="M72.275,67.703 C64.3889494,61.9735602 61.089056,51.8177721 64.1011963,42.5472119 C67.1133365,33.2766517 75.7523708,26.9999954 85.5,26.9999954 C95.2476292,26.9999954 103.886663,33.2766517 106.898804,42.5472119 C109.910944,51.8177721 106.611051,61.9735602 98.725,67.703" id="exp4--Shape" stroke="#000000"></path>
+            <text id="exp4--x/y=00" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="62" y="19">x/y=00</tspan>
+            </text>
+            <polygon id="exp4--Shape" fill="#000000" points="98.725 67.703 107.473 64.17 99.382 58.292"></polygon>
+            <path d="M231.275,67.703 C223.388949,61.9735602 220.089056,51.8177721 223.101196,42.5472119 C226.113337,33.2766517 234.752371,26.9999954 244.5,26.9999954 C254.247629,26.9999954 262.886663,33.2766517 265.898804,42.5472119 C268.910944,51.8177721 265.611051,61.9735602 257.725,67.703" id="exp4--Shape" stroke="#000000"></path>
+            <text id="exp4--x'/y=00" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="215" y="19">x'/y=00</tspan>
+            </text>
+            <polygon id="exp4--Shape" fill="#000000" points="257.725 67.703 266.473 64.17 258.382 58.292"></polygon>
+            <path d="M274.5,94.5 L392.5,94.5 L274.5,94.5 Z" id="exp4--Shape" stroke="#000000" fill="#000000"></path>
+            <polygon id="exp4--Shape" fill="#000000" points="392.5 94.5 384.5 89.5 384.5 99.5"></polygon>
+            <text id="exp4--x/y=00" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="307.5" y="115.5">x/y=00</tspan>
+            </text>
+            <path d="M404.226,118.156 C364.729416,156.150478 302.270584,156.150478 262.774,118.156" id="exp4--Shape" stroke="#000000"></path>
+            <polygon id="exp4--Shape" fill="#000000" points="262.774 118.156 265.073 127.305 272.006 120.099"></polygon>
+            <text id="exp4--x'/y=01" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="320.5" y="164.5">x'/y=01</tspan>
+            </text>
+            <path d="M452.5,94.5 L575.5,94.5 L452.5,94.5 Z" id="exp4--Shape" stroke="#000000" fill="#000000"></path>
+            <polygon id="exp4--Shape" fill="#000000" points="575.5 94.5 567.5 89.5 567.5 99.5"></polygon>
+            <text id="exp4--x/y=00" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="489.5" y="115.5">x/y=00</tspan>
+            </text>
+            <path d="M589.512,119.853 C550.959053,172.069312 489.906648,202.882611 425,202.882611 C360.093352,202.882611 299.040947,172.069312 260.488,119.853" id="exp4--Shape" stroke="#000000"></path>
+            <polygon id="exp4--Shape" fill="#000000" points="260.488 119.853 261.218 129.258 269.263 123.319"></polygon>
+            <text id="exp4--x'/y=10" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="404.5" y="223.5">x'/y=10</tspan>
+            </text>
+            <path d="M635.5,94.5 L741.5,94.5 L635.5,94.5 Z" id="exp4--Shape" stroke="#000000" fill="#000000"></path>
+            <polygon id="exp4--Shape" fill="#000000" points="741.5 94.5 733.5 89.5 733.5 99.5"></polygon>
+            <text id="exp4--x/y=00" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="662.5" y="115.5">x/y=00</tspan>
+            </text>
+            <path d="M758.275,67.703 C750.388949,61.9735602 747.089056,51.8177721 750.101196,42.5472119 C753.113337,33.2766517 761.752371,26.9999954 771.5,26.9999954 C781.247629,26.9999954 789.886663,33.2766517 792.898804,42.5472119 C795.910944,51.8177721 792.611051,61.9735602 784.725,67.703" id="exp4--Shape" stroke="#000000"></path>
+            <text id="exp4--x/y=00" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="746.5" y="18.5">x/y=00</tspan>
+            </text>
+            <polygon id="exp4--Shape" fill="#000000" points="784.725 67.703 793.473 64.17 785.382 58.292"></polygon>
+            <path d="M758.823,121.674 C709.466681,214.366005 613.01359,272.281634 508,272.281634 C402.98641,272.281634 306.533319,214.366005 257.177,121.674" id="exp4--Shape" stroke="#000000"></path>
+            <polygon id="exp4--Shape" fill="#000000" points="257.177 121.674 256.524 131.086 265.351 126.386"></polygon>
+            <text id="exp4--x'/y=11" fill="#000000" font-family="TimesNewRomanPSMT, Times New Roman" font-size="20" font-weight="normal">
+                <tspan x="481.5" y="293.5">x'/y=11</tspan>
+            </text>
+            <g id="exp4--Group" transform="translate(80.000000, 124.000000)" fill="#000000">
+                <path d="M5.5,99.5 L5.5,0.5 L5.5,99.5 Z" id="exp4--Shape" stroke="#000000"></path>
+                <polygon id="exp4--Shape" points="5.5 0.5 0.5 8.5 10.5 8.5"></polygon>
+            </g>
+            <g id="exp4--Group" transform="translate(29.571979, 77.704911) rotate(111.000000) translate(-29.571979, -77.704911) translate(24.071979, 49.204911)" fill="#000000">
+                <path d="M5.50922742,56.9789251 L5.50922742,6.97892505 L5.50922742,56.9789251 Z" id="exp4--Shape" stroke="#000000" stroke-width="0.5"></path>
+                <polygon id="exp4--Shape" points="5.5 0.5 0.5 8.5 10.5 8.5"></polygon>
+            </g>
+            <path d="M144.268,226.107 L97.732,121.893 L144.268,226.107 Z" id="exp4--Shape" stroke="#000000" fill="#000000"></path>
+            <polygon id="exp4--Shape" fill="#000000" points="97.732 121.893 96.428 131.236 105.559 127.159"></polygon>
+            <path d="M251.5,234 L105.94,116.459 L251.5,234 Z" id="exp4--Shape" stroke="#000000" fill="#000000"></path>
+            <polygon id="exp4--Shape" fill="#000000" points="105.94 116.459 107.731 125.722 115.051 118.908"></polygon>
+        </g>
+    </g>
+</svg>
