@@ -13,8 +13,8 @@ source sc(
 	.X(X),
 	.Y(Y),
 	.S(S),
-    .F(F),
-    .Cout(Cout),
+  .F(F),
+  .Cout(Cout),
 	.Overflow(Overflow)
 );
 
